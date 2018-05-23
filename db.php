@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "proxy123";
-$dbname = "chatapp";
+$username   = "root";
+$password   = "proxy123";
+$dbname     = "chatapp";
 
 // Create connection
 $db = mysqli_connect($servername, $username, $password, $dbname);
