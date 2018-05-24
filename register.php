@@ -35,6 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
       die('{"status":"error","message":"Error, please try again"}');
     } else {
         setcookie("uuid", $uuid, time() + 3600, '/');
+        $sql ="INSERT INTO `conversation` (`convid`,`oneside`,`twoside`,`lastmsg`,`lastmsgtime`)";
+        $sql.= " VALUES('".hash('md5',$uuid.' '.$uuid)."','$uuid','$uuid','','0')";
+        $result = mysqli_query($db,$sql);
         die('{"status":"success","uuid":"' . $uuid . '"}');
     }
   } else {
