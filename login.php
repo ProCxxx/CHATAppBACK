@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     else {
       $row = mysqli_fetch_row($result);
       $msg = '{"status":"success","name":"' . $row['1'] . '","uuid":"' . $row['3'] . '","profilePic":"' . $row['5'] . '","description":"'.$row['6'].'"}';
-      $sql = "UPDATE `users` SET `lastonline`='" . (time() * 1000) . "' WHERE `uuid`=" . $row['uuid'];
+      $sql = "UPDATE `users` SET `lastonline`='" . (time() * 1000) . "' WHERE `uuid`=" . $row['3'];
       die($msg);
     }
   }

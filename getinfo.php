@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $result = mysqli_query($db, $sql);
             if ($result == false) {
                 die('{"status":"error","message":"Error, please try again"}');
-            } else if (mysqli_num_rows($result) != 1) {
+            } else if (mysqli_num_rows($result) == 0) {
                 die('{"status":"error","message":"User not found"}');
             } else {
                 $row = mysqli_fetch_row($result);
