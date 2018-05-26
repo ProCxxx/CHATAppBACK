@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     else {
       $row = mysqli_fetch_row($result);
-      $msg = '{"status":"success","name":"' . $row['2'] . '","uuid":"' . $row['4'] . '","profilePic":"' . $row['6'] . '"}';
-      $sql = "UPDATE `users` SET `lastonline`='" . (time() * 1000) . "' WHERE `uuid`=" . $row['uuid'];
+      $msg = '{"status":"success","name":"' . $row['2'] . '","uuid":"' . $row['4'] . '","profilePic":"' . $row['6'] . '","description":"'.$row['7'].'"}';
+      $sql = "UPDATE `users` SET `lastonline`='" . (time() * 1000) . "' WHERE `uuid`=" . $row['4'];
       die($msg);
     }
   }

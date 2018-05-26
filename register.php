@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $uuid = hash('md5', hash('md5',rand(1000).$user.rand(1000)) . hash('md5', time() * rand(1234, 12345)));
     $lastOnline = time();
     $pp = '';
-    $sql = "INSERT INTO `users`(`username`, `name`, `password`, `uuid`, `lastonline`, `profilepic`) VALUES ('$user','$name','$passwd','$uuid','$lastOnline','')";
+    $sql = "INSERT INTO `users`(`username`, `name`, `password`, `uuid`, `lastonline`, `profilepic`, `description`) VALUES ('$user','$name','$passwd','$uuid','$lastOnline','','')";
     $result = mysqli_query($db, $sql);
     if ($result === false) {
       die('{"status":"error","message":"Error, please try again"}');

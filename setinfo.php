@@ -62,7 +62,16 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         die('{"status":"error","message":"Error, please try again"}');
       }
       else {
-        $row = mysqli_fetch_row($result);
+        // $row = mysqli_fetch_row($result);
+        $msg = '{"status":"success","message":"Updated"}';
+        die($msg);
+      }
+    }else if ($action==="description"){
+      $sql = "UPDATE `users` SET `description`='$val' WHERE uuid='$uuid'";
+      $result = mysqli_query($db,$sql);
+      if($result == false){
+        die('{"status":"error","message":"Error, please try again"}');
+      }else{
         $msg = '{"status":"success","message":"Updated"}';
         die($msg);
       }

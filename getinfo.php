@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $result = mysqli_query($db, $sql);
         if ($result == false) {
             die('{"status":"error","message":"Error, please try again"}');
-        } else if (mysqli_num_rows($result) != 1) {
+        } else if (mysqli_num_rows($result) == 0) {
             die('{"status":"error","message":"User not found"}');
         }
         if ($action === "conversation") {
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 die($msg);
             }
         } else if ($action === "profile") {
-            $sql    = "SELECT username, name, profilepic, uuid FROM `users` WHERE `uuid`='$uuid'";
+            $sql    = "SELECT username, name, profilepic, uuid, description FROM `users` WHERE `uuid`='$uuid'";
             $result = mysqli_query($db, $sql);
             if ($result == false) {
                 die('{"status":"error","message":"Error, please try again"}');
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                 die('{"status":"error","message":"User not found"}');
             } else {
                 $row = mysqli_fetch_row($result);
-                $msg = '{"status":"success","uuid":"' . $uuid . '","profilepic":"' . $row['2'] . '","name":"' . $row['1'] . '","username":"' . $row['0'] . '"}';
+                $msg = '{"status":"success","uuid":"' . $uuid . '","profilepic":"' . $row['2'] . '","name":"' . $row['1'] . '","username":"' . $row['0'] . '","description":"'.$row['4'].'"}';
                 die($msg);
             }
         } else {

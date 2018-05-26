@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $pw = hash('md5', '_!_' . $pw . '_!_');
     include "db.php";
 
-    $sql = "SELECT username, name, password, uuid, lastonline, profilepic FROM `users` WHERE `username`='" . $user . "' AND `password`= BINARY '" . $pw . "'";
+    $sql = "SELECT username, name, password, uuid, lastonline, profilepic, description FROM `users` WHERE `username`='" . $user . "' AND `password`= BINARY '" . $pw . "'";
     $result = mysqli_query($db, $sql);
     if ($result === false) {
       die('{"status":"error","message":"Error, please try again"}'); // '.mysqli_error($db).'"});
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     else {
       $row = mysqli_fetch_row($result);
-      $msg = '{"status":"success","name":"' . $row['1'] . '","uuid":"' . $row['3'] . '","profilePic":"' . $row['5'] . '"}';
+      $msg = '{"status":"success","name":"' . $row['1'] . '","uuid":"' . $row['3'] . '","profilePic":"' . $row['5'] . '","description":"'.$row['6'].'"}';
       $sql = "UPDATE `users` SET `lastonline`='" . (time() * 1000) . "' WHERE `uuid`=" . $row['uuid'];
       die($msg);
     }
